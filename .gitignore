@@ -1,0 +1,12 @@
+# private keys - NEVER commit
+*.sk
+# build output
+build/
+mldsa_native/
+# large binaries
+*.img
+*.img.good
+*.sig
+# generated at build time
+verity-params.txt
+manifest.txt
