@@ -1,0 +1,11 @@
+#!/bin/sh
+PREREQ=""
+prereqs() { echo "$PREREQ"; }
+case "$1" in prereqs) prereqs; exit 0;; esac
+. /usr/share/initramfs-tools/hook-functions
+copy_exec /usr/local/bin/pt-verify /usr/local/bin/pt-verify
+copy_exec /usr/sbin/veritysetup /sbin
+copy_file config /etc/pi-trust/device.pk /etc/pi-trust/device.pk
+manual_add_modules dm-verity
+copy_file config /etc/pi-trust/manifest.txt /etc/pi-trust/manifest.txt
+copy_file config /etc/pi-trust/manifest.sig /etc/pi-trust/manifest.sig

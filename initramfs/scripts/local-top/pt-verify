@@ -1,0 +1,16 @@
+#!/bin/sh
+PREREQ=""
+prereqs() { echo "$PREREQ"; }
+case "$1" in prereqs) prereqs; exit 0;; esac
+
+log() { echo "pt-verify: $*" > /dev/kmsg; }
+
+log "AUDIT START"
+/usr/local/bin/pt-verify /etc/pi-trust/manifest.txt /etc/pi-trust/manifest.sig /etc/pi-trust/device.pk > /dev/null 2>&1
+rc=$?
+if [ "$rc" -eq 0 ]; then
+    log "AUDIT RESULT VALID"
+else
+    log "AUDIT RESULT INVALID rc=$rc"
+fi
+exit 0
