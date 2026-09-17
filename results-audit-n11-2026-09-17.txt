@@ -1,0 +1,99 @@
+--- 2026-09-17T12:22:46-05:00 net=CometNet
+[    1.443399] pt-verify: AUDIT START
+[    1.445162] pt-verify: AUDIT RESULT VALID
+Startup finished in 2.116s (kernel) + 7.263s (userspace) = 9.380s 
+2.293s NetworkManager.service
+1.032s tailscaled.service
+1.002s dev-mmcblk0p2.device
+ 671ms systemd-fsck@dev-disk-by\x2dpartuuid-56bd4a66\x2d01.service
+ 411ms ssh.service
+--- 2026-09-17T12:23:44-05:00 net=CometNet
+[    1.487436] pt-verify: AUDIT START
+[    1.489132] pt-verify: AUDIT RESULT VALID
+Startup finished in 2.161s (kernel) + 7.273s (userspace) = 9.434s 
+2.275s NetworkManager.service
+1.047s tailscaled.service
+ 948ms dev-mmcblk0p2.device
+ 701ms systemd-fsck@dev-disk-by\x2dpartuuid-56bd4a66\x2d01.service
+ 388ms ssh.service
+--- 2026-09-17T12:24:28-05:00 net=CometNet
+[    1.474654] pt-verify: AUDIT START
+[    1.476374] pt-verify: AUDIT RESULT VALID
+Startup finished in 2.169s (kernel) + 7.274s (userspace) = 9.444s 
+2.309s NetworkManager.service
+1.047s dev-mmcblk0p2.device
+1.042s tailscaled.service
+ 660ms systemd-fsck@dev-disk-by\x2dpartuuid-56bd4a66\x2d01.service
+ 426ms ssh.service
+--- 2026-09-17T12:25:43-05:00 net=CometNet
+[    1.799296] pt-verify: AUDIT START
+[    1.801014] pt-verify: AUDIT RESULT VALID
+Startup finished in 3.646s (kernel) + 7.311s (userspace) = 10.957s 
+3.375s apt-daily-upgrade.service
+2.281s NetworkManager.service
+1.035s tailscaled.service
+1.020s dev-mmcblk0p2.device
+ 704ms systemd-fsck@dev-disk-by\x2dpartuuid-56bd4a66\x2d01.service
+--- 2026-09-17T12:26:41-05:00 net=CometNet
+[    1.482759] pt-verify: AUDIT START
+[    1.484466] pt-verify: AUDIT RESULT VALID
+Startup finished in 2.162s (kernel) + 7.240s (userspace) = 9.403s 
+2.272s NetworkManager.service
+1.062s dev-mmcblk0p2.device
+1.044s tailscaled.service
+ 686ms systemd-fsck@dev-disk-by\x2dpartuuid-56bd4a66\x2d01.service
+ 413ms ssh.service
+--- 2026-09-17T12:27:39-05:00 net=CometNet
+[    1.468355] pt-verify: AUDIT START
+[    1.470067] pt-verify: AUDIT RESULT VALID
+Startup finished in 2.154s (kernel) + 7.272s (userspace) = 9.427s 
+2.312s NetworkManager.service
+1.041s tailscaled.service
+1.005s dev-mmcblk0p2.device
+ 696ms systemd-fsck@dev-disk-by\x2dpartuuid-56bd4a66\x2d01.service
+ 400ms ssh.service
+--- 2026-09-17T12:28:38-05:00 net=CometNet
+[    1.794419] pt-verify: AUDIT START
+[    1.796232] pt-verify: AUDIT RESULT VALID
+Startup finished in 2.477s (kernel) + 7.258s (userspace) = 9.736s 
+2.318s NetworkManager.service
+1.042s dev-mmcblk0p2.device
+1.015s tailscaled.service
+ 658ms systemd-fsck@dev-disk-by\x2dpartuuid-56bd4a66\x2d01.service
+ 384ms ssh.service
+--- 2026-09-17T12:29:28-05:00 net=CometNet
+[    1.451351] pt-verify: AUDIT START
+[    1.453066] pt-verify: AUDIT RESULT VALID
+Startup finished in 2.122s (kernel) + 7.373s (userspace) = 9.495s 
+2.293s NetworkManager.service
+1.032s tailscaled.service
+ 971ms dev-mmcblk0p2.device
+ 675ms systemd-fsck@dev-disk-by\x2dpartuuid-56bd4a66\x2d01.service
+ 395ms ssh.service
+--- 2026-09-17T12:30:44-05:00 net=CometNet
+[    1.461868] pt-verify: AUDIT START
+[    1.463605] pt-verify: AUDIT RESULT VALID
+Startup finished in 2.133s (kernel) + 7.279s (userspace) = 9.412s 
+2.322s NetworkManager.service
+1.036s dev-mmcblk0p2.device
+1.028s tailscaled.service
+ 671ms systemd-fsck@dev-disk-by\x2dpartuuid-56bd4a66\x2d01.service
+ 391ms ssh.service
+--- 2026-09-17T12:31:54-05:00 net=CometNet
+[    1.793745] pt-verify: AUDIT START
+[    1.795470] pt-verify: AUDIT RESULT VALID
+Startup finished in 2.448s (kernel) + 8.387s (userspace) = 10.836s 
+2.304s NetworkManager.service
+2.121s dev-mmcblk0p2.device
+1.391s rpi-resize-swap-file.service
+1.344s systemd-random-seed.service
+1.342s systemd-sysctl.service
+--- 2026-09-17T12:32:52-05:00 net=CometNet
+[    1.466313] pt-verify: AUDIT START
+[    1.468041] pt-verify: AUDIT RESULT VALID
+Startup finished in 2.154s (kernel) + 7.262s (userspace) = 9.417s 
+2.296s NetworkManager.service
+1.026s dev-mmcblk0p2.device
+ 999ms tailscaled.service
+ 715ms systemd-fsck@dev-disk-by\x2dpartuuid-56bd4a66\x2d01.service
+ 381ms ssh.service
