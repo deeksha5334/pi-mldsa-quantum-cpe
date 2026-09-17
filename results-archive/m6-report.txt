@@ -1,0 +1,19 @@
+Analyzing stack usage for: test/build/mldsa65/bin/test_stack65
+==================================================
+Static Analysis (GCC -fstack-usage):
+----------------------------------------
+test_sign_only                                       7808 bytes static
+test_keygen_only                                     6032 bytes static
+test_verify_only                                     5344 bytes static
+main                                                   16 bytes static
+Total functions analyzed: 4
+Largest function: test_sign_only (7,808 bytes static)
+
+Runtime Analysis:
+----------------------------------------
+Runtime analysis: API-specific stack usage (measured with valgrind massif):
+  ML-DSA65-KeyGen     : 56,720 bytes
+  ML-DSA65-Sign       : 82,032 bytes
+  ML-DSA65-Verify     : 46,400 bytes
+  Peak                : 82,032 bytes (maximum across all APIs)
+

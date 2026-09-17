@@ -1,0 +1,3 @@
+  STACK      ML-DSA-44:   test/build/mldsa44/bin/test_stack44
+  STACK      ML-DSA-65:   test/build/mldsa65/bin/test_stack65
+  STACK      ML-DSA-87:  test/build/mldsa87/bin/test_stack87

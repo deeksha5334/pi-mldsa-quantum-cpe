@@ -1,0 +1,10 @@
+Startup finished in 2.116s (kernel) + 6.094s (userspace) = 8.210s 
+multi-user.target reached after 6.092s in userspace.
+Startup finished in 2.460s (kernel) + 6.089s (userspace) = 8.550s 
+multi-user.target reached after 6.087s in userspace.
+Startup finished in 2.129s (kernel) + 6.148s (userspace) = 8.278s 
+multi-user.target reached after 6.146s in userspace.
+Startup finished in 2.458s (kernel) + 6.038s (userspace) = 8.497s 
+multi-user.target reached after 6.036s in userspace.
+Startup finished in 2.466s (kernel) + 6.087s (userspace) = 8.553s 
+multi-user.target reached after 6.074s in userspace.

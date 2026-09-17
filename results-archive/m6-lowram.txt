@@ -1,0 +1,36 @@
+Analyzing stack usage for: test/build/mldsa65/bin/test_stack65
+==================================================
+Static Analysis (GCC -fstack-usage):
+----------------------------------------
+PQCP_MLDSA_NATIVE_MLDSA65_pk_from_sk                14048 bytes static
+PQCP_MLDSA_NATIVE_MLDSA65_signature_internal        11872 bytes static
+PQCP_MLDSA_NATIVE_MLDSA65_keypair_internal          11616 bytes static
+PQCP_MLDSA_NATIVE_MLDSA65_verify_internal           10544 bytes static
+test_sign_only                                       7808 bytes static
+test_keygen_only                                     6032 bytes static
+test_verify_only                                     5344 bytes static
+mld_compute_pack_t0_t1.isra                          3200 bytes static
+PQCP_MLDSA_NATIVE_MLDSA65_poly_uniform_eta_4x        2496 bytes static
+PQCP_MLDSA_NATIVE_MLDSA65_poly_uniform               1136 bytes static
+PQCP_MLDSA_NATIVE_MLDSA65_poly_uniform_gamma1        1056 bytes static
+PQCP_MLDSA_NATIVE_MLDSA65_signature_pre_hash_shake256    496 bytes static
+PQCP_MLDSA_NATIVE_MLDSA65_verify_pre_hash_shake256    496 bytes static
+PQCP_MLDSA_NATIVE_MLDSA65_signature                   480 bytes static
+PQCP_MLDSA_NATIVE_MLDSA65_signature_pre_hash_internal    432 bytes static
+PQCP_MLDSA_NATIVE_MLDSA65_verify_pre_hash_internal    432 bytes static
+PQCP_MLDSA_NATIVE_MLDSA65_poly_challenge              432 bytes static
+PQCP_MLDSA_NATIVE_MLDSA65_verify                      416 bytes static
+PQCP_MLDSA_NATIVE_MLDSA65_shake256                    272 bytes static
+randombytes                                           176 bytes static
+... and 72 more functions
+Total functions analyzed: 92
+Largest function: PQCP_MLDSA_NATIVE_MLDSA65_pk_from_sk (14,048 bytes static)
+
+Runtime Analysis:
+----------------------------------------
+Runtime analysis: API-specific stack usage (measured with valgrind massif):
+  ML-DSA65-KeyGen     : 23,600 bytes
+  ML-DSA65-Sign       : 22,448 bytes
+  ML-DSA65-Verify     : 16,736 bytes
+  Peak                : 23,600 bytes (maximum across all APIs)
+

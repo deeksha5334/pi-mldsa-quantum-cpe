@@ -1,0 +1,21 @@
+total 756
+drwxrwxr-x 2 team_singularity team_singularity   4096 Sep  9 19:20 .
+drwxrwxr-x 8 team_singularity team_singularity   4096 Sep  9 19:20 ..
+-rwxrwxr-x 1 team_singularity team_singularity 150264 Sep  9 19:18 acvp_mldsa65
+-rwxrwxr-x 1 team_singularity team_singularity  83296 Sep  9 19:18 gen_KAT65
+-rwxrwxr-x 1 team_singularity team_singularity 146744 Sep  9 19:20 test_alloc65
+-rwxrwxr-x 1 team_singularity team_singularity 149504 Sep  9 19:17 test_mldsa65
+-rwxrwxr-x 1 team_singularity team_singularity 149368 Sep  9 19:20 test_rng_fail65
+-rwxrwxr-x 1 team_singularity team_singularity 146808 Sep  9 19:20 test_sign_hook65
+-rwxrwxr-x 1 team_singularity team_singularity 149448 Sep  9 19:19 test_unit65
+-rwxrwxr-x 1 team_singularity team_singularity  83656 Sep  9 19:18 wycheproof_mldsa65
+---
+   text	   data	    bss	    dec	    hex	filename
+  67160	    920	   4136	  72216	  11a18	test/build/mldsa65/bin/acvp_mldsa65
+  56586	    864	    104	  57554	   e0d2	test/build/mldsa65/bin/gen_KAT65
+  84057	    864	    104	  85025	  14c21	test/build/mldsa65/bin/test_alloc65
+  78737	    864	    104	  79705	  13759	test/build/mldsa65/bin/test_mldsa65
+  76665	    864	    104	  77633	  12f41	test/build/mldsa65/bin/test_rng_fail65
+  67676	    880	    104	  68660	  10c34	test/build/mldsa65/bin/test_sign_hook65
+  69409	    864	    104	  70377	  112e9	test/build/mldsa65/bin/test_unit65
+  59725	    904	    104	  60733	   ed3d	test/build/mldsa65/bin/wycheproof_mldsa65
