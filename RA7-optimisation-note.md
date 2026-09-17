@@ -46,3 +46,26 @@ are exact.
 
 M6 (16,736 B) was measured under the -O3 build. Re-measure peak stack at -O2
 and -Os before the final report.
+
+## M6 re-measured on the shipping binary (2026-09-17)
+
+Method: valgrind massif --stacks=yes on the actual static pt-verify binary
+(fault-hardened, double verify), not the upstream test harness. Figure therefore
+includes libc startup, i.e. it is the honest whole-program number.
+
+| Flag | Code | Peak stack | Code+stack | % of 128 KB |
+|---|---|---|---|---|
+| -Os | 15,372 B | 18,096 B | 33,468 B | 25.5% |
+| -O2 | 19,976 B | 18,224 B | 38,200 B | 29.1% |
+| -O3 | 36,200 B | 18,224 B | 54,424 B | 41.5% |
+
+Peak stack is FLAT across optimisation levels: 128 B spread (0.7%). Optimisation
+level changes code size, not stack. This is consistent with 8A.3b - matrix A
+expansion, governed by MLD_CONFIG_REDUCE_RAM, is what drives verify stack.
+
+Comparison to the notebook figure: 8A.3b reports 16,736 B from the upstream
+test_stack65 harness at -O3. Ours is 18,224 B whole-program. The ~1.5 KB delta
+is libc/startup, not ML-DSA. Both are valid; state which one is being quoted.
+
+M6 VERDICT: 18,224 B = 13.9% of 128 KB. PASS.
+M2+M6 combined, shipping -O2 build: 38,200 B = 29.1%. Headroom 70.9%.
