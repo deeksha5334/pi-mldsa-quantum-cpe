@@ -3,14 +3,36 @@ PREREQ=""
 prereqs() { echo "$PREREQ"; }
 case "$1" in prereqs) prereqs; exit 0;; esac
 
+. /scripts/functions
+
 log() { echo "pt-verify: $*" > /dev/kmsg; }
 
-log "AUDIT START"
-OUT=$(/usr/local/bin/pt-verify /etc/pi-trust/manifest.txt /etc/pi-trust/manifest.sig /etc/pi-trust/device.pk 2>&1)
+halt_boot() {
+    log "HALTING BOOT: $*"
+    panic "pt-verify: $*"
+    log "panic() returned - forcing halt"
+    sync
+    echo b > /proc/sysrq-trigger 2>/dev/null
+    while : ; do sleep 60; done
+}
+
+MAN=/etc/pi-trust/manifest.txt
+SIG=/etc/pi-trust/manifest.sig
+PK=/etc/pi-trust/device.pk
+BIN=/usr/local/bin/pt-verify
+
+log "ENFORCE START"
+
+for f in "$BIN" "$MAN" "$SIG" "$PK"; do
+    [ -f "$f" ] || halt_boot "missing file $f"
+done
+[ -x "$BIN" ] || halt_boot "verifier not executable"
+
+OUT=$("$BIN" "$MAN" "$SIG" "$PK" 2>&1)
 rc=$?
 if [ "$rc" -eq 0 ] && echo "$OUT" | grep -q "PT_VERIFY_OK_A5C3"; then
-    log "AUDIT RESULT VALID"
+    log "ENFORCE RESULT VALID"
 else
-    log "AUDIT RESULT INVALID rc=$rc token=no"
+    halt_boot "manifest signature verification FAILED rc=$rc"
 fi
 exit 0
