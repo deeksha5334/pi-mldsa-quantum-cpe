@@ -6,11 +6,11 @@ case "$1" in prereqs) prereqs; exit 0;; esac
 log() { echo "pt-verify: $*" > /dev/kmsg; }
 
 log "AUDIT START"
-/usr/local/bin/pt-verify /etc/pi-trust/manifest.txt /etc/pi-trust/manifest.sig /etc/pi-trust/device.pk > /dev/null 2>&1
+OUT=$(/usr/local/bin/pt-verify /etc/pi-trust/manifest.txt /etc/pi-trust/manifest.sig /etc/pi-trust/device.pk 2>&1)
 rc=$?
-if [ "$rc" -eq 0 ]; then
+if [ "$rc" -eq 0 ] && echo "$OUT" | grep -q "PT_VERIFY_OK_A5C3"; then
     log "AUDIT RESULT VALID"
 else
-    log "AUDIT RESULT INVALID rc=$rc"
+    log "AUDIT RESULT INVALID rc=$rc token=no"
 fi
 exit 0
