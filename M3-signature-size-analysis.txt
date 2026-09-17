@@ -1,0 +1,51 @@
+ML-DSA-65: sig 3,309 B  pk 1,952 B  manifest 644 B
+
+verity demo rootfs (32 MB)           33,554,432 B   sig/payload = 0.00986%  1:10,140
+  + hash tree                        33,824,768 B   sig/payload = 0.00978%  1:10,222
+real kernel8.img                     10,168,774 B   sig/payload = 0.03254%  1:3,073
+real initramfs8                      19,666,483 B   sig/payload = 0.01683%  1:5,943
+kernel + initramfs                   29,835,257 B   sig/payload = 0.01109%  1:9,016
+hypothetical 30 GB rootfs          32,212,254,720 B   sig/payload = 0.00001%  1:9,734,740
+
+Full trust overhead (sig+manifest+pk) = 5,905 B
+  vs kernel+initramfs     0.019792%  1:5,052
+  vs 30 GB rootfs         0.000018%  1:5,455,081
+
+Naive per-artifact signing, 2 artifacts: 6,618 B vs 3,309 B manifest scheme
+dm-verity hash tree overhead (measured 8F.1): 0.81% of payload
+
+## M3 CONCLUSION (2026-09-17)
+
+Metric: ratio of signature size to firmware size. Target: minimise.
+
+Measured against real on-device artifacts:
+  signature alone vs kernel+initramfs (29.8 MB) = 0.011%  (1:9,016)
+  sig+manifest+pk vs same                        = 0.020%  (1:5,052)
+
+The ratio is NOT a fixed property of ML-DSA-65. Because the signature covers a
+644-byte manifest rather than the payload, the numerator is CONSTANT. Ratio is
+therefore inversely proportional to payload size and improves without bound:
+0.03% for the kernel alone, 0.011% for kernel+initramfs, 0.00001% at 30 GB.
+
+Naive alternative (sign each artifact) scales the numerator with artifact count:
+2 artifacts = 6,618 B, N artifacts = N x 3,309 B. The manifest design makes
+signature overhead independent of both payload size and artifact count.
+
+Answers the brief's "PQC size penalty" avenue directly: ML-DSA's large
+signatures (3,309 B vs ~64 B for ECDSA) are irrelevant to STORAGE in this
+architecture. The dominant size cost is the dm-verity hash tree at 0.81% of
+payload (8F.1) - 73x larger than the signature, and a SHA-256 cost, not a
+post-quantum one.
+
+Where the PQC size penalty DOES bite is early-boot MEMORY, not storage:
+M2 19,976 B code + M6 18,224 B stack = 38,200 B (8I.7, 8I.8). That is the
+real constraint, and it is measured and passing at 29.1% of 128 KB.
+
+Caveats to state:
+- initramfs8 is 19.7 MB because it is a general-purpose Debian initramfs.
+  A purpose-built one would be much smaller, worsening the ratio while
+  changing none of the reasoning.
+- kernel8.img is the current unsigned kernel; the signed boot.img will differ.
+- Figures are byte counts of real files on the device, not estimates.
+
+M3 STATUS: SATISFIED.
