@@ -10,3 +10,4 @@ mldsa_native/
 # generated at build time
 verity-params.txt
 manifest.txt
+rsa-dev-private.pem

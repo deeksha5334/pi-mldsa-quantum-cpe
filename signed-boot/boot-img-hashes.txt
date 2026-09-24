@@ -1,0 +1,2 @@
+8bae0316c17325ce6b7cc5330e57cfd88c131fa45190a6d86d5240656b409931  /home/team_singularity/boot.img
+2646b9a3a22da746c374bd6ba90d09b1f04108bd582be001a230296b6be5d083  /home/team_singularity/boot.sig
