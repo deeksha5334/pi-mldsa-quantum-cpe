@@ -11,3 +11,4 @@ mldsa_native/
 verity-params.txt
 manifest.txt
 rsa-dev-private.pem
+sshkeys/

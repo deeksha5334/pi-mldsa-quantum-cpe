@@ -1,0 +1,39 @@
+# METABEGIN
+# X-Env-Layer-Name: pt-secureboot
+# X-Env-Layer-Category: security
+# X-Env-Layer-Desc: Team Singularity ML-DSA-65 verified boot. Installs the
+#  post-quantum verifier, the device public key, the initramfs hook and
+#  boot-time script, and makes the root filesystem read-only for dm-verity.
+# X-Env-Layer-Version: 0.3.0
+# METAEND
+---
+mmdebstrap:
+  setup-hooks:
+    - echo "pt-secureboot layer active"
+  customize-hooks:
+    - mkdir -p "$1/usr/local/bin" "$1/etc/pi-trust"
+    - mkdir -p "$1/etc/initramfs-tools/hooks" "$1/etc/initramfs-tools/scripts/local-top"
+    - cp pt-verify "$1/usr/local/bin/pt-verify"
+    - chmod 755 "$1/usr/local/bin/pt-verify"
+    - cp dev.pk "$1/etc/pi-trust/device.pk"
+    - chmod 644 "$1/etc/pi-trust/device.pk"
+    - cp hook-pt-secureboot "$1/etc/initramfs-tools/hooks/pt-secureboot"
+    - chmod 755 "$1/etc/initramfs-tools/hooks/pt-secureboot"
+    - cp script-pt-verify "$1/etc/initramfs-tools/scripts/local-top/pt-verify"
+    - chmod 755 "$1/etc/initramfs-tools/scripts/local-top/pt-verify"
+    - cp fstab-verity "$1/etc/fstab"
+    - chmod 644 "$1/etc/fstab"
+    - cp sshkeys/ssh_host_ed25519_key "$1/etc/ssh/ssh_host_ed25519_key"
+    - cp sshkeys/ssh_host_ed25519_key.pub "$1/etc/ssh/ssh_host_ed25519_key.pub"
+    - cp sshkeys/ssh_host_rsa_key "$1/etc/ssh/ssh_host_rsa_key"
+    - cp sshkeys/ssh_host_rsa_key.pub "$1/etc/ssh/ssh_host_rsa_key.pub"
+    - chmod 600 "$1/etc/ssh/ssh_host_ed25519_key" "$1/etc/ssh/ssh_host_rsa_key"
+    - chmod 644 "$1/etc/ssh/ssh_host_ed25519_key.pub" "$1/etc/ssh/ssh_host_rsa_key.pub"
+    - truncate -s 0 "$1/etc/machine-id"
+    - rm -f "$1/etc/resolv.conf"
+    - ln -sf ../run/systemd/resolve/stub-resolv.conf "$1/etc/resolv.conf"
+    - mkdir -p "$1/var/log" "$1/var/tmp" "$1/var/lib/systemd"
+    - echo "pt-secureboot read-only root configured"
+  packages:
+    - cryptsetup-bin
+    - initramfs-tools

@@ -1,0 +1,19 @@
+#!/bin/sh
+PREREQ=""
+prereqs() { echo "$PREREQ"; }
+case "$1" in prereqs) prereqs; exit 0;; esac
+. /usr/share/initramfs-tools/hook-functions
+
+copy_exec /usr/local/bin/pt-verify /usr/local/bin/pt-verify
+
+V=$(command -v veritysetup 2>/dev/null || true)
+[ -n "$V" ] && copy_exec "$V" /sbin
+
+copy_file config /etc/pi-trust/device.pk /etc/pi-trust/device.pk
+
+for f in manifest.txt manifest.sig; do
+    [ -f "/etc/pi-trust/$f" ] && copy_file config "/etc/pi-trust/$f" "/etc/pi-trust/$f"
+done
+
+manual_add_modules dm-verity
+exit 0

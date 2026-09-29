@@ -1,0 +1,6 @@
+/dev/mapper/pt-root  /  ext4  ro,errors=remount-ro  0  1
+/dev/disk/by-slot/boot  /boot/firmware  vfat  ro,noatime  0  2
+tmpfs  /tmp  tmpfs  defaults,nosuid,nodev,size=64M  0  0
+tmpfs  /var/log  tmpfs  defaults,nosuid,nodev,size=32M  0  0
+tmpfs  /var/tmp  tmpfs  defaults,nosuid,nodev,size=32M  0  0
+tmpfs  /var/lib/systemd  tmpfs  defaults,nosuid,nodev,size=16M  0  0

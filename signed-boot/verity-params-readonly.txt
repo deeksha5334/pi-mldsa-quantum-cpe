@@ -1,0 +1,8 @@
+# verity-data-image: verity-root.ext4
+# verity-hash-image: verity-hash.img
+# verity-root-hash: 50763ac8368f386b2d097ce98e9643a807456f5b6e3a1837cac3519279fa65d5
+# verity-salt: 84d7a05fc9905e66cb9bf8e5684c896ceb1e4e6523ec150d029853eda23ff0b5
+# verity-data-blocks: 384996
+# verity-data-block-size: 4096
+# verity-hash-block-size: 4096
+# verity-hash-algorithm: sha256
