@@ -1,0 +1,2 @@
+507d93794ed9796b3fc9896bfc0a6b7c9391969b724f9f6de0907323b102a26b  /home/team_singularity/verity-root.ext4
+3bd732d00004ff0d40a2f596f8375f0fea33098832b99840e449aeb16e9007b4  /home/team_singularity/verity-hash.img

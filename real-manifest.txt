@@ -1,0 +1,15 @@
+# pi-trust-manifest v1
+# created: 2026-09-29T00:26:10Z
+# algorithm: ML-DSA-65 (FIPS 204)
+# context: pi-trust-manifest-v1
+# artifacts: 2
+# verity-data-image: verity-root.ext4
+# verity-hash-image: verity-hash.img
+# verity-root-hash: ff4cca09212fdc08fb6f63a7737fef5a3ab4dae4baffcba90ca133673723267b
+# verity-salt: 345a2aa0cb53558a16e37752dac682e3f4fa12a5ca60187876a05bb92c789278
+# verity-data-blocks: 384984
+# verity-data-block-size: 4096
+# verity-hash-block-size: 4096
+# verity-hash-algorithm: sha256
+507d93794ed9796b3fc9896bfc0a6b7c9391969b724f9f6de0907323b102a26b  verity-root.ext4
+3bd732d00004ff0d40a2f596f8375f0fea33098832b99840e449aeb16e9007b4  verity-hash.img
