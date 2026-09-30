@@ -9,3 +9,4 @@ copy_file config /etc/pi-trust/device.pk /etc/pi-trust/device.pk
 manual_add_modules dm-verity
 copy_file config /etc/pi-trust/manifest.txt /etc/pi-trust/manifest.txt
 copy_file config /etc/pi-trust/manifest.sig /etc/pi-trust/manifest.sig
+copy_file config /etc/pi-trust/verity-hash.img /etc/pi-trust/verity-hash.img

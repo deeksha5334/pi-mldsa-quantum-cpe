@@ -1,0 +1,69 @@
+#!/bin/sh
+PREREQ=""
+prereqs() { echo "$PREREQ"; }
+case "$1" in prereqs) prereqs; exit 0;; esac
+
+. /scripts/functions
+
+log() { echo "pt-verify: $*" > /dev/kmsg; }
+
+halt_boot() {
+    log "HALTING BOOT: $*"
+    panic "pt-verify: $*"
+    log "panic returned - forcing halt"
+    sync
+    echo b > /proc/sysrq-trigger 2>/dev/null
+    while : ; do sleep 60; done
+}
+
+MAN=/etc/pi-trust/manifest.txt
+SIG=/etc/pi-trust/manifest.sig
+PK=/etc/pi-trust/device.pk
+HASHIMG=/etc/pi-trust/verity-hash.img
+BIN=/usr/local/bin/pt-verify
+DATADEV=/dev/mmcblk0p2
+MAPPER=pt-root
+
+log "ENFORCE START"
+
+for f in "$BIN" "$MAN" "$SIG" "$PK" "$HASHIMG"; do
+    [ -f "$f" ] || halt_boot "missing file $f"
+done
+[ -x "$BIN" ] || halt_boot "verifier not executable"
+
+# STAGE 1 - signature over the manifest
+OUT=$("$BIN" "$MAN" "$SIG" "$PK" 2>&1)
+rc=$?
+echo "$OUT" | grep -q "PT_VERIFY_OK_A5C3" || halt_boot "signature check failed rc=$rc"
+[ "$rc" -eq 0 ] || halt_boot "verifier exit $rc"
+log "stage 1 signature VALID"
+
+# STAGE 2 - parameters from the NOW-VERIFIED manifest
+mfield() { grep "^# $1:" "$MAN" | head -1 | sed "s|^# $1:[[:space:]]*||" | tr -d '[:space:]'; }
+ROOT_HASH=$(mfield "verity-root-hash")
+SALT=$(mfield "verity-salt")
+DATA_BLOCKS=$(mfield "verity-data-blocks")
+DBS=$(mfield "verity-data-block-size")
+HBS=$(mfield "verity-hash-block-size")
+for n in ROOT_HASH SALT DATA_BLOCKS DBS HBS; do
+    eval "v=\$$n"
+    [ -n "$v" ] || halt_boot "signed manifest missing $n"
+done
+log "stage 2 root hash $ROOT_HASH"
+
+# STAGE 3 - cross-check the hash device against the signed parameters
+modprobe dm-verity 2>/dev/null
+DUMP=$(veritysetup dump "$HASHIMG" 2>&1) || halt_boot "cannot read hash superblock"
+dfield() { echo "$DUMP" | grep "^$1:" | head -1 | sed 's/.*:[[:space:]]*//' | tr -d '[:space:]'; }
+check() { [ "$2" = "$3" ] || halt_boot "hash device mismatch on $1 signed=$2 device=$3"; }
+check "salt" "$SALT" "$(dfield 'Salt')"
+check "data blocks" "$DATA_BLOCKS" "$(dfield 'Data blocks')"
+check "data block size" "$DBS" "$(dfield 'Data block size')"
+check "hash block size" "$HBS" "$(dfield 'Hash block size')"
+log "stage 3 hash device matches signed parameters"
+
+# STAGE 4 - AUDIT MODE: report only, do not activate
+log "stage 4 AUDIT would open $DATADEV with hash $ROOT_HASH"
+if [ -b "$DATADEV" ]; then log "stage 4 AUDIT data device present"; else log "stage 4 AUDIT data device MISSING"; fi
+log "AUDIT RESULT - stages 1-3 passed, activation skipped"
+exit 0
