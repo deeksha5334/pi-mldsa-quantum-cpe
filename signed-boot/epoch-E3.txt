@@ -1,0 +1,7 @@
+=== epoch E3 - B2 candidate - 2026-09-30T17:59:07-05:00
+boot.img:       38384128 bytes, SIGNED_BOOT=1
+initramfs:      23266369 bytes (incl 12MB verity hash tree)
+verifier:       ML-DSA-65 double verify + token, 4-stage verity script (audit mode)
+cmdline:        root=PARTUUID=56bd4a66-02 panic=10 
+services:       tailscaled enabled, apt timers masked, NM-wait-online disabled
+Run /init at:   2.752706s

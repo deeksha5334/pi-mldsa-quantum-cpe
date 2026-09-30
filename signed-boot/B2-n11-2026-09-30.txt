@@ -1,0 +1,165 @@
+--- 2026-09-30T18:03:50-05:00 net=CometNet
+[    2.748899] Run /init as init process
+[    4.051428] pt-verify: ENFORCE START
+[    4.059342] pt-verify: stage 1 signature VALID
+[    4.080072] pt-verify: stage 2 root hash 50763ac8368f386b2d097ce98e9643a807456f5b6e3a1837cac3519279fa65d5
+[    4.145560] pt-verify: stage 3 hash device matches signed parameters
+[    4.151602] pt-verify: stage 4 AUDIT would open /dev/mmcblk0p2 with hash 50763ac8368f386b2d097ce98e9643a807456f5b6e3a1837cac3519279fa65d5
+[    4.164140] pt-verify: stage 4 AUDIT data device present
+[    4.169444] pt-verify: AUDIT RESULT - stages 1-3 passed, activation skipped
+Startup finished in 5.123s (kernel) + 7.789s (userspace) = 12.912s 
+2.268s NetworkManager.service
+1.478s dev-mmcblk0p2.device
+1.008s tailscaled.service
+ 720ms systemd-fsck@dev-disk-by\x2dpartuuid-56bd4a66\x2d01.service
+ 390ms ssh.service
+--- 2026-09-30T18:04:35-05:00 net=CometNet
+[    2.748993] Run /init as init process
+[    4.027848] pt-verify: ENFORCE START
+[    4.035705] pt-verify: stage 1 signature VALID
+[    4.056384] pt-verify: stage 2 root hash 50763ac8368f386b2d097ce98e9643a807456f5b6e3a1837cac3519279fa65d5
+[    4.122660] pt-verify: stage 3 hash device matches signed parameters
+[    4.129387] pt-verify: stage 4 AUDIT would open /dev/mmcblk0p2 with hash 50763ac8368f386b2d097ce98e9643a807456f5b6e3a1837cac3519279fa65d5
+[    4.141913] pt-verify: stage 4 AUDIT data device present
+[    4.147242] pt-verify: AUDIT RESULT - stages 1-3 passed, activation skipped
+Startup finished in 5.099s (kernel) + 7.917s (userspace) = 13.016s 
+2.303s NetworkManager.service
+1.474s dev-mmcblk0p2.device
+1.064s tailscaled.service
+ 723ms systemd-fsck@dev-disk-by\x2dpartuuid-56bd4a66\x2d01.service
+ 411ms ssh.service
+--- 2026-09-30T18:05:58-05:00 net=CometNet
+[    2.746890] Run /init as init process
+[    4.034002] pt-verify: ENFORCE START
+[    4.042031] pt-verify: stage 1 signature VALID
+[    4.062520] pt-verify: stage 2 root hash 50763ac8368f386b2d097ce98e9643a807456f5b6e3a1837cac3519279fa65d5
+[    4.127476] pt-verify: stage 3 hash device matches signed parameters
+[    4.133545] pt-verify: stage 4 AUDIT would open /dev/mmcblk0p2 with hash 50763ac8368f386b2d097ce98e9643a807456f5b6e3a1837cac3519279fa65d5
+[    4.146068] pt-verify: stage 4 AUDIT data device present
+[    4.151403] pt-verify: AUDIT RESULT - stages 1-3 passed, activation skipped
+Startup finished in 5.107s (kernel) + 7.793s (userspace) = 12.901s 
+2.276s NetworkManager.service
+1.432s dev-mmcblk0p2.device
+1.041s tailscaled.service
+ 768ms systemd-fsck@dev-disk-by\x2dpartuuid-56bd4a66\x2d01.service
+ 418ms ssh.service
+--- 2026-09-30T18:06:42-05:00 net=CometNet
+[    3.119056] Run /init as init process
+[    4.427635] pt-verify: ENFORCE START
+[    4.435693] pt-verify: stage 1 signature VALID
+[    4.456307] pt-verify: stage 2 root hash 50763ac8368f386b2d097ce98e9643a807456f5b6e3a1837cac3519279fa65d5
+[    4.522032] pt-verify: stage 3 hash device matches signed parameters
+[    4.528602] pt-verify: stage 4 AUDIT would open /dev/mmcblk0p2 with hash 50763ac8368f386b2d097ce98e9643a807456f5b6e3a1837cac3519279fa65d5
+[    4.541148] pt-verify: stage 4 AUDIT data device present
+[    4.546485] pt-verify: AUDIT RESULT - stages 1-3 passed, activation skipped
+Startup finished in 5.500s (kernel) + 7.851s (userspace) = 13.352s 
+2.272s NetworkManager.service
+1.472s dev-mmcblk0p2.device
+1.040s tailscaled.service
+ 714ms systemd-fsck@dev-disk-by\x2dpartuuid-56bd4a66\x2d01.service
+ 403ms ssh.service
+--- 2026-09-30T18:06:45-05:00 net=CometNet
+[    3.129015] Run /init as init process
+[    4.458121] pt-verify: ENFORCE START
+[    4.466181] pt-verify: stage 1 signature VALID
+[    4.486870] pt-verify: stage 2 root hash 50763ac8368f386b2d097ce98e9643a807456f5b6e3a1837cac3519279fa65d5
+[    4.552282] pt-verify: stage 3 hash device matches signed parameters
+[    4.558408] pt-verify: stage 4 AUDIT would open /dev/mmcblk0p2 with hash 50763ac8368f386b2d097ce98e9643a807456f5b6e3a1837cac3519279fa65d5
+[    4.570911] pt-verify: stage 4 AUDIT data device present
+[    4.576259] pt-verify: AUDIT RESULT - stages 1-3 passed, activation skipped
+Startup finished in 5.529s (kernel) + 7.862s (userspace) = 13.392s 
+2.293s NetworkManager.service
+1.535s dev-mmcblk0p2.device
+1.029s tailscaled.service
+ 732ms systemd-fsck@dev-disk-by\x2dpartuuid-56bd4a66\x2d01.service
+ 400ms ssh.service
+--- 2026-09-30T18:06:47-05:00 net=CometNet
+[    3.112739] Run /init as init process
+[    4.430564] pt-verify: ENFORCE START
+[    4.438549] pt-verify: stage 1 signature VALID
+[    4.459214] pt-verify: stage 2 root hash 50763ac8368f386b2d097ce98e9643a807456f5b6e3a1837cac3519279fa65d5
+[    4.524936] pt-verify: stage 3 hash device matches signed parameters
+[    4.531457] pt-verify: stage 4 AUDIT would open /dev/mmcblk0p2 with hash 50763ac8368f386b2d097ce98e9643a807456f5b6e3a1837cac3519279fa65d5
+[    4.543950] pt-verify: stage 4 AUDIT data device present
+[    4.549289] pt-verify: AUDIT RESULT - stages 1-3 passed, activation skipped
+Startup finished in 5.500s (kernel) + 7.896s (userspace) = 13.397s 
+2.299s NetworkManager.service
+1.484s dev-mmcblk0p2.device
+1.056s tailscaled.service
+ 717ms systemd-fsck@dev-disk-by\x2dpartuuid-56bd4a66\x2d01.service
+ 417ms ssh.service
+--- 2026-09-30T18:10:14-05:00 net=CometNet
+[    3.118981] Run /init as init process
+[    4.407107] pt-verify: ENFORCE START
+[    4.414992] pt-verify: stage 1 signature VALID
+[    4.435619] pt-verify: stage 2 root hash 50763ac8368f386b2d097ce98e9643a807456f5b6e3a1837cac3519279fa65d5
+[    4.500996] pt-verify: stage 3 hash device matches signed parameters
+[    4.507221] pt-verify: stage 4 AUDIT would open /dev/mmcblk0p2 with hash 50763ac8368f386b2d097ce98e9643a807456f5b6e3a1837cac3519279fa65d5
+[    4.519736] pt-verify: stage 4 AUDIT data device present
+[    4.525085] pt-verify: AUDIT RESULT - stages 1-3 passed, activation skipped
+Startup finished in 5.479s (kernel) + 7.904s (userspace) = 13.384s 
+2.317s NetworkManager.service
+1.482s dev-mmcblk0p2.device
+1.041s tailscaled.service
+ 707ms systemd-fsck@dev-disk-by\x2dpartuuid-56bd4a66\x2d01.service
+ 393ms ssh.service
+--- 2026-09-30T18:11:18-05:00 net=CometNet
+[    3.111039] Run /init as init process
+[    4.407054] pt-verify: ENFORCE START
+[    4.414963] pt-verify: stage 1 signature VALID
+[    4.435567] pt-verify: stage 2 root hash 50763ac8368f386b2d097ce98e9643a807456f5b6e3a1837cac3519279fa65d5
+[    4.501175] pt-verify: stage 3 hash device matches signed parameters
+[    4.507215] pt-verify: stage 4 AUDIT would open /dev/mmcblk0p2 with hash 50763ac8368f386b2d097ce98e9643a807456f5b6e3a1837cac3519279fa65d5
+[    4.519772] pt-verify: stage 4 AUDIT data device present
+[    4.525102] pt-verify: AUDIT RESULT - stages 1-3 passed, activation skipped
+Startup finished in 5.478s (kernel) + 7.787s (userspace) = 13.266s 
+2.283s NetworkManager.service
+1.471s dev-mmcblk0p2.device
+1.028s tailscaled.service
+ 749ms systemd-fsck@dev-disk-by\x2dpartuuid-56bd4a66\x2d01.service
+ 405ms ssh.service
+--- 2026-09-30T18:12:23-05:00 net=CometNet
+[    3.115698] Run /init as init process
+[    4.416774] pt-verify: ENFORCE START
+[    4.424646] pt-verify: stage 1 signature VALID
+[    4.445135] pt-verify: stage 2 root hash 50763ac8368f386b2d097ce98e9643a807456f5b6e3a1837cac3519279fa65d5
+[    4.510524] pt-verify: stage 3 hash device matches signed parameters
+[    4.516853] pt-verify: stage 4 AUDIT would open /dev/mmcblk0p2 with hash 50763ac8368f386b2d097ce98e9643a807456f5b6e3a1837cac3519279fa65d5
+[    4.529400] pt-verify: stage 4 AUDIT data device present
+[    4.534725] pt-verify: AUDIT RESULT - stages 1-3 passed, activation skipped
+Startup finished in 6.408s (kernel) + 7.879s (userspace) = 14.288s 
+2.342s NetworkManager.service
+1.452s dev-mmcblk0p2.device
+1.038s tailscaled.service
+ 691ms systemd-fsck@dev-disk-by\x2dpartuuid-56bd4a66\x2d01.service
+ 403ms ssh.service
+--- 2026-09-30T18:13:15-05:00 net=CometNet
+[    3.120334] Run /init as init process
+[    4.412652] pt-verify: ENFORCE START
+[    4.420654] pt-verify: stage 1 signature VALID
+[    4.441206] pt-verify: stage 2 root hash 50763ac8368f386b2d097ce98e9643a807456f5b6e3a1837cac3519279fa65d5
+[    4.506712] pt-verify: stage 3 hash device matches signed parameters
+[    4.512948] pt-verify: stage 4 AUDIT would open /dev/mmcblk0p2 with hash 50763ac8368f386b2d097ce98e9643a807456f5b6e3a1837cac3519279fa65d5
+[    4.525466] pt-verify: stage 4 AUDIT data device present
+[    4.530826] pt-verify: AUDIT RESULT - stages 1-3 passed, activation skipped
+Startup finished in 5.483s (kernel) + 7.879s (userspace) = 13.363s 
+2.301s NetworkManager.service
+1.457s dev-mmcblk0p2.device
+1.070s tailscaled.service
+ 719ms systemd-fsck@dev-disk-by\x2dpartuuid-56bd4a66\x2d01.service
+ 422ms ssh.service
+--- 2026-09-30T18:14:39-05:00 net=CometNet
+[    3.112341] Run /init as init process
+[    4.418633] pt-verify: ENFORCE START
+[    4.426521] pt-verify: stage 1 signature VALID
+[    4.447053] pt-verify: stage 2 root hash 50763ac8368f386b2d097ce98e9643a807456f5b6e3a1837cac3519279fa65d5
+[    4.512636] pt-verify: stage 3 hash device matches signed parameters
+[    4.518743] pt-verify: stage 4 AUDIT would open /dev/mmcblk0p2 with hash 50763ac8368f386b2d097ce98e9643a807456f5b6e3a1837cac3519279fa65d5
+[    4.531319] pt-verify: stage 4 AUDIT data device present
+[    4.536593] pt-verify: AUDIT RESULT - stages 1-3 passed, activation skipped
+Startup finished in 5.489s (kernel) + 7.937s (userspace) = 13.427s 
+2.334s NetworkManager.service
+1.548s dev-mmcblk0p2.device
+1.067s tailscaled.service
+ 703ms systemd-fsck@dev-disk-by\x2dpartuuid-56bd4a66\x2d01.service
+ 417ms ssh.service

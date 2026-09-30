@@ -1,0 +1,96 @@
+--- 2026-09-30T18:23:31-05:00 net=CometNet
+[    3.076419] Run /init as init process
+Startup finished in 5.369s (kernel) + 7.929s (userspace) = 13.299s 
+2.289s NetworkManager.service
+1.628s dev-mmcblk0p2.device
+1.029s tailscaled.service
+ 729ms systemd-fsck@dev-disk-by\x2dpartuuid-56bd4a66\x2d01.service
+ 388ms rp1-test.service
+--- 2026-09-30T18:28:05-05:00 net=CometNet
+[    2.750831] Run /init as init process
+Startup finished in 5.055s (kernel) + 8.675s (userspace) = 13.731s 
+2.271s NetworkManager.service
+1.851s tailscaled.service
+1.540s dev-mmcblk0p2.device
+1.203s ssh.service
+ 887ms rpc-statd-notify.service
+--- 2026-09-30T18:29:08-05:00 net=CometNet
+[    3.082959] Run /init as init process
+Startup finished in 5.055s (kernel) + 7.918s (userspace) = 12.973s 
+2.299s NetworkManager.service
+1.575s dev-mmcblk0p2.device
+1.043s tailscaled.service
+ 701ms systemd-fsck@dev-disk-by\x2dpartuuid-56bd4a66\x2d01.service
+ 416ms ssh.service
+--- 2026-09-30T18:30:18-05:00 net=CometNet
+[    2.744333] Run /init as init process
+Startup finished in 5.023s (kernel) + 11.764s (userspace) = 16.788s 
+4.998s tailscaled.service
+4.377s ssh.service
+2.900s rpc-statd-notify.service
+2.290s NetworkManager.service
+1.453s dev-mmcblk0p2.device
+--- 2026-09-30T18:31:30-05:00 net=CometNet
+[    2.748109] Run /init as init process
+Startup finished in 5.910s (kernel) + 7.898s (userspace) = 13.808s 
+2.290s NetworkManager.service
+1.501s dev-mmcblk0p2.device
+1.020s tailscaled.service
+ 711ms systemd-fsck@dev-disk-by\x2dpartuuid-56bd4a66\x2d01.service
+ 402ms ssh.service
+--- 2026-09-30T18:32:38-05:00 net=CometNet
+[    2.746929] Run /init as init process
+Startup finished in 5.052s (kernel) + 11.043s (userspace) = 16.096s 
+4.194s tailscaled.service
+3.556s ssh.service
+2.326s NetworkManager.service
+1.482s dev-mmcblk0p2.device
+ 700ms systemd-fsck@dev-disk-by\x2dpartuuid-56bd4a66\x2d01.service
+--- 2026-09-30T18:33:22-05:00 net=CometNet
+[    3.073012] Run /init as init process
+Startup finished in 5.357s (kernel) + 7.857s (userspace) = 13.214s 
+2.310s NetworkManager.service
+1.419s dev-mmcblk0p2.device
+1.053s tailscaled.service
+ 697ms systemd-fsck@dev-disk-by\x2dpartuuid-56bd4a66\x2d01.service
+ 495ms user@1000.service
+--- 2026-09-30T18:34:53-05:00 net=CometNet
+[    3.073325] Run /init as init process
+Startup finished in 5.367s (kernel) + 13.499s (userspace) = 18.866s 
+5.892s dev-mmcblk0p2.device
+3.758s rpi-resize-swap-file.service
+3.617s systemd-udevd.service
+2.506s systemd-random-seed.service
+2.265s NetworkManager.service
+--- 2026-09-30T18:35:44-05:00 net=CometNet
+[    3.074964] Run /init as init process
+Startup finished in 5.372s (kernel) + 7.884s (userspace) = 13.256s 
+2.280s NetworkManager.service
+1.504s dev-mmcblk0p2.device
+1.046s tailscaled.service
+ 758ms systemd-fsck@dev-disk-by\x2dpartuuid-56bd4a66\x2d01.service
+ 408ms ssh.service
+--- 2026-09-30T18:37:11-05:00 net=CometNet
+[    3.076840] Run /init as init process
+Startup finished in 5.416s (kernel) + 7.948s (userspace) = 13.365s 
+2.349s NetworkManager.service
+1.446s dev-mmcblk0p2.device
+1.052s tailscaled.service
+ 718ms systemd-fsck@dev-disk-by\x2dpartuuid-56bd4a66\x2d01.service
+ 420ms ssh.service
+--- 2026-09-30T18:38:15-05:00 net=CometNet
+[    2.756147] Run /init as init process
+Startup finished in 5.091s (kernel) + 7.848s (userspace) = 12.940s 
+2.315s NetworkManager.service
+1.463s dev-mmcblk0p2.device
+1.045s tailscaled.service
+ 677ms systemd-fsck@dev-disk-by\x2dpartuuid-56bd4a66\x2d01.service
+ 446ms ssh.service
+--- 2026-09-30T18:39:02-05:00 net=CometNet
+[    3.079036] Run /init as init process
+Startup finished in 5.403s (kernel) + 7.980s (userspace) = 13.383s 
+2.311s NetworkManager.service
+1.491s dev-mmcblk0p2.device
+1.098s tailscaled.service
+ 716ms systemd-fsck@dev-disk-by\x2dpartuuid-56bd4a66\x2d01.service
+ 429ms ssh.service
