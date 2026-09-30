@@ -1,0 +1,22 @@
+# pi-trust-manifest v3
+# created: 2026-09-30T22:51:41Z
+# algorithm: ML-DSA-65 (FIPS 204)
+# context: pi-trust-manifest-v1
+#
+# ENFORCED AT BOOT - verity parameters, cross-checked before activation
+# verity-root-hash: 50763ac8368f386b2d097ce98e9643a807456f5b6e3a1837cac3519279fa65d5
+# verity-salt: 84d7a05fc9905e66cb9bf8e5684c896ceb1e4e6523ec150d029853eda23ff0b5
+# verity-data-blocks: 384996
+# verity-data-block-size: 4096
+# verity-hash-block-size: 4096
+# verity-hash-algorithm: sha256
+#
+# ENFORCED AT BOOT - hashed by the initramfs before use
+3fd1c2ea1aee59b58d4649c88a0c680b207b2d8f84b1b63e44bb09394d38aa7a  verity-hash.img
+#
+# PROVENANCE ONLY - recorded at build time, NOT checked at boot
+# The boot path verifies the rootfs by root hash, per block, on read.
+# build-image-sha256: 637db153cc80bdf1ccb67514875af04bb5f57dbd976d92f33fcc779c7247da9a
+# build-image-name: root.ext4
+# build-image-uuid: 46fc26be-8d96-44a2-9a97-cfd96aceeec1
+# build-date: 2026-09-28

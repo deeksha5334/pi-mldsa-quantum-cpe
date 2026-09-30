@@ -1,0 +1,7 @@
+[    4.034398] pt-verify: ENFORCE START
+[    4.042443] pt-verify: stage 1 signature VALID
+[    4.062947] pt-verify: stage 2 root hash 50763ac8368f386b2d097ce98e9643a807456f5b6e3a1837cac3519279fa65d5
+[    4.128408] pt-verify: stage 3 hash device matches signed parameters
+[    4.134692] pt-verify: stage 4 AUDIT would open /dev/mmcblk0p2 with hash 50763ac8368f386b2d097ce98e9643a807456f5b6e3a1837cac3519279fa65d5
+[    4.147249] pt-verify: stage 4 AUDIT data device present
+[    4.152608] pt-verify: AUDIT RESULT - stages 1-3 passed, activation skipped
