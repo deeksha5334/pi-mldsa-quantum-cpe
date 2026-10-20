@@ -7,6 +7,30 @@
 #define PK_BYTES  MLDSA_PUBLICKEYBYTES(MLD_CONFIG_PARAMETER_SET)
 #define SIG_BYTES MLDSA_BYTES(MLD_CONFIG_PARAMETER_SET)
 
+/* Anti-rollback floor. Bump this (and re-sign boot.img) when an old image
+   must no longer be accepted. Production: back this with an OTP/TPM counter
+   (gated on OTP burn, deferred). */
+#define PT_MIN_FW_VERSION 1
+
+/* Value of the "# firmware-version:" manifest line, or -1 if absent/bad.
+   Raw-buffer scan: no NUL assumption, no GNU/libc extensions, so it behaves
+   identically under klibc on the card and glibc on the bench. */
+static long pt_manifest_version(const uint8_t *buf, size_t len)
+{
+  const char *key = "# firmware-version:";
+  size_t klen = strlen(key);
+  for (size_t i = 0; i + klen <= len; i++) {
+    if (i != 0 && buf[i-1] != '\n') continue;   /* start of line only */
+    if (memcmp(buf + i, key, klen) != 0) continue;
+    size_t j = i + klen;
+    while (j < len && (buf[j] == ' ' || buf[j] == '\t')) j++;
+    long v = 0; int got = 0;
+    while (j < len && buf[j] >= '0' && buf[j] <= '9') { v = v*10 + (buf[j]-'0'); got = 1; j++; }
+    return got ? v : -1;
+  }
+  return -1;
+}
+
 int main(int argc, char **argv)
 {
   uint8_t pk[PK_BYTES];
@@ -40,6 +64,19 @@ int main(int argc, char **argv)
   printf("  manifest : %s (%zu bytes)\n", argv[1], msg_len);
   printf("  algorithm: ML-DSA-%d\n", MLD_CONFIG_PARAMETER_SET);
   printf("  context  : \"%s\"\n", PT_CONTEXT);
+
+  /* Anti-rollback: only trusted AFTER the signature verifies. */
+  long ver = pt_manifest_version(msg, msg_len);
+  if (ver < 0) {
+    fprintf(stderr, "ROLLBACK CHECK FAILED: no firmware-version in manifest\n");
+    goto out;
+  }
+  if (ver < PT_MIN_FW_VERSION) {
+    fprintf(stderr, "ROLLBACK REJECTED: version %ld < floor %d\n", ver, PT_MIN_FW_VERSION);
+    goto out;
+  }
+  printf("  fw-version: %ld (floor %d)\n", ver, PT_MIN_FW_VERSION);
+
   if (v1 == 0 && v2 == 0) { printf("PT_VERIFY_OK_A5C3\n"); rc = 0; }
 
 out:
