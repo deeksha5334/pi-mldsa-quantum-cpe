@@ -1,0 +1,83 @@
+#!/bin/sh
+PREREQ=""
+prereqs() { echo "$PREREQ"; }
+case "$1" in prereqs) prereqs; exit 0;; esac
+
+. /scripts/functions
+
+log() { echo "pt-verify: $*" > /dev/kmsg; }
+
+halt_boot() {
+    log "HALTING BOOT: $*"
+    panic "pt-verify: $*"
+    sync
+    echo b > /proc/sysrq-trigger 2>/dev/null
+    while : ; do sleep 60; done
+}
+
+MAN=/etc/pi-trust/manifest.txt
+SIG=/etc/pi-trust/manifest.sig
+PK=/etc/pi-trust/device.pk
+HASHIMG=/etc/pi-trust/verity-hash.img
+BIN=/usr/local/bin/pt-verify
+DATADEV=/dev/mmcblk0p2
+MAPPER=pt-root
+
+log "ENFORCE START"
+
+for f in "$BIN" "$MAN" "$SIG" "$PK" "$HASHIMG"; do
+    [ -f "$f" ] || halt_boot "missing file $f"
+done
+[ -x "$BIN" ] || halt_boot "verifier not executable"
+
+OUT=$("$BIN" "$MAN" "$SIG" "$PK" 2>&1)
+rc=$?
+case "$OUT" in
+    *PT_VERIFY_OK_A5C3*) : ;;
+    *) halt_boot "token absent rc=$rc" ;;
+esac
+[ "$rc" -eq 0 ] || halt_boot "verifier exit $rc"
+log "stage 1 signature VALID"
+
+ROOT_HASH=""; SALT=""; DATA_BLOCKS=""; DBS=""; HBS=""
+while read -r line; do
+    case "$line" in
+        "# verity-root-hash:"*)       ROOT_HASH=${line##*: } ;;
+        "# verity-salt:"*)            SALT=${line##*: } ;;
+        "# verity-data-blocks:"*)     DATA_BLOCKS=${line##*: } ;;
+        "# verity-data-block-size:"*) DBS=${line##*: } ;;
+        "# verity-hash-block-size:"*) HBS=${line##*: } ;;
+    esac
+done < "$MAN"
+for n in "$ROOT_HASH" "$SALT" "$DATA_BLOCKS" "$DBS" "$HBS"; do
+    [ -n "$n" ] || halt_boot "signed manifest missing a verity field"
+done
+log "stage 2 root hash $ROOT_HASH"
+
+modprobe dm-verity 2>/dev/null
+D_SALT=""; D_BLOCKS=""; D_DBS=""; D_HBS=""
+veritysetup dump "$HASHIMG" > /tmp/vdump 2>&1 || halt_boot "cannot read hash superblock"
+while read -r f1 f2 f3 f4; do
+    case "$f1 $f2 $f3" in
+        "Salt: "*)              D_SALT=$f2 ;;
+        "Data blocks: "*)       D_BLOCKS=$f3 ;;
+        "Data block size:"*)    D_DBS=$f4 ;;
+        "Hash block size:"*)    D_HBS=$f4 ;;
+    esac
+done < /tmp/vdump
+[ -n "$D_SALT" ] && [ -n "$D_BLOCKS" ] && [ -n "$D_DBS" ] && [ -n "$D_HBS" ] \
+    || halt_boot "could not parse hash superblock"
+[ "$SALT" = "$D_SALT" ]          || halt_boot "salt mismatch signed=$SALT device=$D_SALT"
+[ "$DATA_BLOCKS" = "$D_BLOCKS" ] || halt_boot "blocks mismatch signed=$DATA_BLOCKS device=$D_BLOCKS"
+[ "$DBS" = "$D_DBS" ]            || halt_boot "data block size mismatch signed=$DBS device=$D_DBS"
+[ "$HBS" = "$D_HBS" ]            || halt_boot "hash block size mismatch signed=$HBS device=$D_HBS"
+log "stage 3 hash device matches signed parameters"
+
+[ -b "$DATADEV" ] || halt_boot "data device not found $DATADEV"
+veritysetup open "$DATADEV" "$MAPPER" "$HASHIMG" "$ROOT_HASH" || halt_boot "veritysetup open failed"
+[ -b "/dev/mapper/$MAPPER" ] || halt_boot "mapper device not created"
+
+ROOT=/dev/mapper/$MAPPER
+export ROOT
+log "ENFORCE RESULT VALID - verified root active"
+exit 0
