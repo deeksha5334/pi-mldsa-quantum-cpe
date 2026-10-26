@@ -39,6 +39,11 @@ int main(int argc, char **argv)
   size_t msg_len = 0;
   int rc = 1;
 
+  /* Unbuffered stdout: when the boot script captures stdout+stderr together,
+     lines must appear in the order they happen (signature result before any
+     rollback verdict), not in buffer-flush order. */
+  (void)setvbuf(stdout, NULL, _IONBF, 0);
+
   if (argc != 4) {
     fprintf(stderr, "usage: %s <manifest> <sig> <key.pk>\n", argv[0]);
     return 2;

@@ -32,12 +32,17 @@ done
 
 OUT=$("$BIN" "$MAN" "$SIG" "$PK" 2>&1)
 rc=$?
+echo "$OUT" > /tmp/vout
 case "$OUT" in
     *PT_VERIFY_OK_A5C3*) : ;;
-    *) halt_boot "token absent rc=$rc" ;;
+    *) while read -r l; do log "verifier: $l"; done < /tmp/vout
+       halt_boot "token absent rc=$rc" ;;
 esac
 [ "$rc" -eq 0 ] || halt_boot "verifier exit $rc"
 log "stage 1 signature VALID"
+while read -r l; do
+    case "$l" in "fw-version:"*) log "stage 1 $l" ;; esac
+done < /tmp/vout
 
 ROOT_HASH=""; SALT=""; DATA_BLOCKS=""; DBS=""; HBS=""
 while read -r line; do
