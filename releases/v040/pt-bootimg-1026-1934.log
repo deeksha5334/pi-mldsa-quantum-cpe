@@ -1,0 +1,470 @@
+
+=== 0. preconditions ===
+build folder (newest): /home/team_singularity/pt-build-v040-1026-192316-16210
+manifest OK, root hash 5caa742cfeca268bc46eecf3247e9f036fa43cb28f3f5f21dc0016af7881b01c
+
+=== 1. attach image; partition 2 must be exactly what was hashed and signed ===
+loop=/dev/loop1
+partition 2 matches the signed manifest: a3faa511551a9976661fb0d61dc4b7a58db3d59ec5cc3e6bf6057541e61ade95
+
+=== 2. stage the boot files from the pristine build boot.vfat (card config.txt + cmdline.txt from Oct 7) ===
+cmdline: console=serial0,115200 console=tty1 root=/dev/mapper/pt-root rootfstype=ext4 ro fsck.repair=no rootwait panic=10
+
+=== 3. initramfs surgery: add manifest, signature, hash tree; repack (gzip -9, as Oct 7) ===
+repacked initramfs: 20164143 bytes
+repacked initramfs verified: manifest, signature, hash tree, script, verifier all exact
+
+=== 4. build boot.img (-a 64 is required: TRAP 1) and check what is inside ===
+Processing source files
+Using IMAGE_SIZE of 34414 with 64 root directory entries
+Warning: Large image size detected. Try removing unused files.
+Creating FAT file system
+Warning: root directory entries specified with -r have no effect on FAT32
+mkfs.fat 4.2 (2021-01-31)
+Copying files to file system image /tmp/tmp.MMMaYl2S5l/boot.img
+Copying LICENCE.broadcom
+Copying bcm2711-rpi-4-b.dtb
+Copying bcm2711-rpi-400.dtb
+Copying bcm2711-rpi-cm4-io.dtb
+Copying bcm2711-rpi-cm4.dtb
+Copying bcm2711-rpi-cm4s.dtb
+Copying bcm2712-d-rpi-5-b.dtb
+Copying bcm2712-rpi-5-b.dtb
+Copying bcm2712-rpi-500.dtb
+Copying bcm2712-rpi-cm5-cm4io.dtb
+Copying bcm2712-rpi-cm5-cm5io.dtb
+Copying bcm2712-rpi-cm5l-cm4io.dtb
+Copying bcm2712-rpi-cm5l-cm5io.dtb
+Copying bcm2712d0-rpi-5-b.dtb
+Copying cmdline.txt
+Copying config.txt
+Copying fixup4.dat
+Copying initramfs8
+Copying kernel8.img
+Copying overlays
+Copying README
+Copying act-led.dtbo
+Copying adafruit-st7735r.dtbo
+Copying adafruit18.dtbo
+Copying adau1977-adc.dtbo
+Copying adau7002-simple.dtbo
+Copying ads1015.dtbo
+Copying ads1115.dtbo
+Copying ads7846.dtbo
+Copying adv7282m.dtbo
+Copying adv728x-m.dtbo
+Copying akkordion-iqdacplus.dtbo
+Copying allo-boss-dac-pcm512x-audio.dtbo
+Copying allo-boss2-dac-audio.dtbo
+Copying allo-digione.dtbo
+Copying allo-katana-dac-audio.dtbo
+Copying allo-piano-dac-pcm512x-audio.dtbo
+Copying allo-piano-dac-plus-pcm512x-audio.dtbo
+Copying anyspi.dtbo
+Copying apds9960.dtbo
+Copying applepi-dac.dtbo
+Copying arducam-64mp.dtbo
+Copying arducam-pivariety.dtbo
+Copying at86rf233.dtbo
+Copying audioinjector-addons.dtbo
+Copying audioinjector-bare-i2s.dtbo
+Copying audioinjector-isolated-soundcard.dtbo
+Copying audioinjector-ultra.dtbo
+Copying audioinjector-wm8731-audio.dtbo
+Copying audiosense-pi.dtbo
+Copying audremap-pi5.dtbo
+Copying audremap.dtbo
+Copying balena-fin.dtbo
+Copying bcm2712d0.dtbo
+Copying camera-mux-2port.dtbo
+Copying camera-mux-4port.dtbo
+Copying cap1106.dtbo
+Copying chipcap2.dtbo
+Copying chipdip-dac.dtbo
+Copying cirrus-wm5102.dtbo
+Copying cm-swap-i2c0.dtbo
+Copying cma.dtbo
+Copying crystalfontz-cfa050_pi_m.dtbo
+Copying cutiepi-panel.dtbo
+Copying dacberry400.dtbo
+Copying dht11.dtbo
+Copying dionaudio-kiwi.dtbo
+Copying dionaudio-loco-v2.dtbo
+Copying dionaudio-loco.dtbo
+Copying disable-bt-pi5.dtbo
+Copying disable-bt.dtbo
+Copying disable-emmc2.dtbo
+Copying disable-wifi-pi5.dtbo
+Copying disable-wifi.dtbo
+Copying dpi18.dtbo
+Copying dpi18cpadhi.dtbo
+Copying dpi24.dtbo
+Copying draws-pi5.dtbo
+Copying draws.dtbo
+Copying dwc-otg-deprecated.dtbo
+Copying dwc2.dtbo
+Copying ed-backlight-pwm-pi5.dtbo
+Copying ed-backlight-pwm.dtbo
+Copying ed-ipc.dtbo
+Copying edt-ft5406.dtbo
+Copying enc28j60-spi2.dtbo
+Copying enc28j60.dtbo
+Copying exc3000.dtbo
+Copying ezsound-6x8iso.dtbo
+Copying fbtft.dtbo
+Copying fe-pi-audio.dtbo
+Copying fsm-demo.dtbo
+Copying gc9a01.dtbo
+Copying ghost-amp.dtbo
+Copying goodix.dtbo
+Copying googlevoicehat-soundcard.dtbo
+Copying gpclk-pi5.dtbo
+Copying gpclk.dtbo
+Copying gpio-charger.dtbo
+Copying gpio-fan.dtbo
+Copying gpio-hog.dtbo
+Copying gpio-ir-tx.dtbo
+Copying gpio-ir.dtbo
+Copying gpio-key.dtbo
+Copying gpio-led.dtbo
+Copying gpio-no-bank0-irq.dtbo
+Copying gpio-no-irq.dtbo
+Copying gpio-poweroff.dtbo
+Copying gpio-shutdown.dtbo
+Copying hat_map.dtb
+Copying hd44780-i2c-lcd.dtbo
+Copying hd44780-lcd.dtbo
+Copying hdmi-backlight-hwhack-gpio.dtbo
+Copying hifiberry-adc.dtbo
+Copying hifiberry-adc8x.dtbo
+Copying hifiberry-amp.dtbo
+Copying hifiberry-amp100.dtbo
+Copying hifiberry-amp3.dtbo
+Copying hifiberry-amp4pro.dtbo
+Copying hifiberry-dac.dtbo
+Copying hifiberry-dac8x.dtbo
+Copying hifiberry-dacplus-pro.dtbo
+Copying hifiberry-dacplus-std.dtbo
+Copying hifiberry-dacplus.dtbo
+Copying hifiberry-dacplusadc.dtbo
+Copying hifiberry-dacplusadcpro.dtbo
+Copying hifiberry-dacplusdsp.dtbo
+Copying hifiberry-dacplushd.dtbo
+Copying hifiberry-digi-pro.dtbo
+Copying hifiberry-digi.dtbo
+Copying hifiberry-studio-dac8x-pro.dtbo
+Copying hifiberry-studio-dac8x.dtbo
+Copying hifiberry-studio-digi.dtbo
+Copying highperi.dtbo
+Copying hy28a.dtbo
+Copying hy28b-2017.dtbo
+Copying hy28b.dtbo
+Copying i-sabre-q2m.dtbo
+Copying i2c-bcm2708.dtbo
+Copying i2c-fan.dtbo
+Copying i2c-gpio.dtbo
+Copying i2c-mux.dtbo
+Copying i2c-pwm-pca9685a.dtbo
+Copying i2c-rtc-gpio.dtbo
+Copying i2c-rtc.dtbo
+Copying i2c-sensor.dtbo
+Copying i2c0-pi5.dtbo
+Copying i2c0.dtbo
+Copying i2c1-pi5.dtbo
+Copying i2c1.dtbo
+Copying i2c2-pi5.dtbo
+Copying i2c3-pi5.dtbo
+Copying i2c3.dtbo
+Copying i2c4.dtbo
+Copying i2c5.dtbo
+Copying i2c6.dtbo
+Copying i2s-dac.dtbo
+Copying i2s-gpio28-31.dtbo
+Copying i2s-master-dac.dtbo
+Copying ilitek-ts-i2c.dtbo
+Copying ilitek251x.dtbo
+Copying imx219.dtbo
+Copying imx258.dtbo
+Copying imx283.dtbo
+Copying imx290.dtbo
+Copying imx296.dtbo
+Copying imx327.dtbo
+Copying imx335.dtbo
+Copying imx355.dtbo
+Copying imx378.dtbo
+Copying imx415.dtbo
+Copying imx462.dtbo
+Copying imx477.dtbo
+Copying imx500-pi5.dtbo
+Copying imx500.dtbo
+Copying imx519.dtbo
+Copying imx708.dtbo
+Copying interludeaudio-analog.dtbo
+Copying interludeaudio-digital.dtbo
+Copying iqaudio-codec.dtbo
+Copying iqaudio-dac.dtbo
+Copying iqaudio-dacplus.dtbo
+Copying iqaudio-digi-wm8804-audio.dtbo
+Copying iqs550.dtbo
+Copying irs1125.dtbo
+Copying jedec-spi-nor.dtbo
+Copying justboom-both.dtbo
+Copying justboom-dac.dtbo
+Copying justboom-digi.dtbo
+Copying ltc294x.dtbo
+Copying max98357a.dtbo
+Copying maxtherm.dtbo
+Copying mbed-dac.dtbo
+Copying mcp23017.dtbo
+Copying mcp23s17.dtbo
+Copying mcp2515-can0.dtbo
+Copying mcp2515-can1.dtbo
+Copying mcp2515.dtbo
+Copying mcp251xfd.dtbo
+Copying mcp3008.dtbo
+Copying mcp3202.dtbo
+Copying mcp342x.dtbo
+Copying media-center.dtbo
+Copying merus-amp.dtbo
+Copying midi-uart0-pi5.dtbo
+Copying midi-uart0.dtbo
+Copying midi-uart1-pi5.dtbo
+Copying midi-uart1.dtbo
+Copying midi-uart2-pi5.dtbo
+Copying midi-uart2.dtbo
+Copying midi-uart3-pi5.dtbo
+Copying midi-uart3.dtbo
+Copying midi-uart4-pi5.dtbo
+Copying midi-uart4.dtbo
+Copying midi-uart5.dtbo
+Copying minipitft13.dtbo
+Copying miniuart-bt.dtbo
+Copying mipi-dbi-spi.dtbo
+Copying mira220.dtbo
+Copying mlx90640.dtbo
+Copying mmc.dtbo
+Copying mz61581.dtbo
+Copying nospi10.dtbo
+Copying ov2311.dtbo
+Copying ov5647.dtbo
+Copying ov64a40.dtbo
+Copying ov7251.dtbo
+Copying ov9281.dtbo
+Copying overlay_map.dtb
+Copying papirus.dtbo
+Copying pca953x.dtbo
+Copying pcf857x.dtbo
+Copying pcie-32bit-dma-pi5.dtbo
+Copying pcie-32bit-dma.dtbo
+Copying pciex1-compat-pi5.dtbo
+Copying pibell.dtbo
+Copying pifacedigital.dtbo
+Copying pifi-40.dtbo
+Copying pifi-dac-hd.dtbo
+Copying pifi-dac-zero.dtbo
+Copying pifi-mini-210.dtbo
+Copying piglow.dtbo
+Copying pimidi.dtbo
+Copying pineboards-hat-ai.dtbo
+Copying pineboards-hatdrive-poe-plus.dtbo
+Copying piscreen.dtbo
+Copying piscreen2r.dtbo
+Copying pisound-micro.dtbo
+Copying pisound-pi5.dtbo
+Copying pisound.dtbo
+Copying pitft22.dtbo
+Copying pitft28-capacitive.dtbo
+Copying pitft28-resistive.dtbo
+Copying pitft35-resistive.dtbo
+Copying pivision.dtbo
+Copying pps-gpio.dtbo
+Copying pps-rp1.dtbo
+Copying proto-codec.dtbo
+Copying pwm-2chan.dtbo
+Copying pwm-fan.dtbo
+Copying pwm-gpio-fan.dtbo
+Copying pwm-gpio.dtbo
+Copying pwm-ir-tx.dtbo
+Copying pwm-pio.dtbo
+Copying pwm.dtbo
+Copying pwm1.dtbo
+Copying qca7000-uart0.dtbo
+Copying qca7000.dtbo
+Copying ramoops-pi4.dtbo
+Copying ramoops-pi5.dtbo
+Copying ramoops.dtbo
+Copying rootmaster.dtbo
+Copying rotary-encoder.dtbo
+Copying rp1-pio-uart.dtbo
+Copying rpi-backlight.dtbo
+Copying rpi-codeczero.dtbo
+Copying rpi-dacplus.dtbo
+Copying rpi-dacpro.dtbo
+Copying rpi-digiampplus.dtbo
+Copying rpi-ft5406.dtbo
+Copying rpi-fw-uart.dtbo
+Copying rpi-poe-plus.dtbo
+Copying rpi-poe.dtbo
+Copying rpi-power-hat-b.dtbo
+Copying rpi-power-hat-t.dtbo
+Copying rpi-sense-v2.dtbo
+Copying rpi-sense.dtbo
+Copying rpi-tv.dtbo
+Copying rra-digidac1-wm8741-audio.dtbo
+Copying rt5616.dtbo
+Copying sainsmart18.dtbo
+Copying sc16is750-i2c.dtbo
+Copying sc16is752-i2c.dtbo
+Copying sc16is75x-spi.dtbo
+Copying sdhost.dtbo
+Copying sdio-pi5.dtbo
+Copying sdio.dtbo
+Copying seeed-can-fd-hat-v1.dtbo
+Copying seeed-can-fd-hat-v2.dtbo
+Copying sh1106-spi.dtbo
+Copying si446x-spi0.dtbo
+Copying sixfab_m1m.dtbo
+Copying smi-dev.dtbo
+Copying smi-nand.dtbo
+Copying smi.dtbo
+Copying spi-gpio35-39.dtbo
+Copying spi-gpio40-45.dtbo
+Copying spi-rtc.dtbo
+Copying spi0-0cs.dtbo
+Copying spi0-1cs-inverted.dtbo
+Copying spi0-1cs.dtbo
+Copying spi0-2cs.dtbo
+Copying spi1-1cs.dtbo
+Copying spi1-2cs.dtbo
+Copying spi1-3cs.dtbo
+Copying spi2-1cs-pi5.dtbo
+Copying spi2-1cs.dtbo
+Copying spi2-2cs-pi5.dtbo
+Copying spi2-2cs.dtbo
+Copying spi2-3cs.dtbo
+Copying spi3-1cs-pi5.dtbo
+Copying spi3-1cs.dtbo
+Copying spi3-2cs-pi5.dtbo
+Copying spi3-2cs.dtbo
+Copying spi4-1cs.dtbo
+Copying spi4-2cs.dtbo
+Copying spi5-1cs-pi5.dtbo
+Copying spi5-1cs.dtbo
+Copying spi5-2cs-pi5.dtbo
+Copying spi5-2cs.dtbo
+Copying spi6-1cs.dtbo
+Copying spi6-2cs.dtbo
+Copying ssd1306-spi.dtbo
+Copying ssd1306.dtbo
+Copying ssd1327-spi.dtbo
+Copying ssd1331-spi.dtbo
+Copying ssd1351-spi.dtbo
+Copying sunfounder-pipower3.dtbo
+Copying sunfounder-pironman5.dtbo
+Copying superaudioboard.dtbo
+Copying sx150x.dtbo
+Copying tc358743-audio.dtbo
+Copying tc358743-pi5.dtbo
+Copying tc358743.dtbo
+Copying tinylcd35.dtbo
+Copying tpm-slb9670.dtbo
+Copying tpm-slb9673.dtbo
+Copying uart0-pi5.dtbo
+Copying uart0.dtbo
+Copying uart1-pi5.dtbo
+Copying uart1.dtbo
+Copying uart2-pi5.dtbo
+Copying uart2.dtbo
+Copying uart3-pi5.dtbo
+Copying uart3.dtbo
+Copying uart4-pi5.dtbo
+Copying uart4.dtbo
+Copying uart5.dtbo
+Copying udrc.dtbo
+Copying ugreen-dabboard.dtbo
+Copying upstream-pi4.dtbo
+Copying upstream.dtbo
+Copying vc4-fkms-v3d-pi4.dtbo
+Copying vc4-fkms-v3d.dtbo
+Copying vc4-kms-dpi-generic.dtbo
+Copying vc4-kms-dpi-hyperpixel2r.dtbo
+Copying vc4-kms-dpi-hyperpixel4.dtbo
+Copying vc4-kms-dpi-hyperpixel4sq.dtbo
+Copying vc4-kms-dpi-panel.dtbo
+Copying vc4-kms-dsi-7inch.dtbo
+Copying vc4-kms-dsi-edatec-panel-070c.dtbo
+Copying vc4-kms-dsi-edatec-panel-101c.dtbo
+Copying vc4-kms-dsi-generic.dtbo
+Copying vc4-kms-dsi-ili79600-10-1inch.dtbo
+Copying vc4-kms-dsi-ili9881-5inch.dtbo
+Copying vc4-kms-dsi-ili9881-7inch.dtbo
+Copying vc4-kms-dsi-lt070me05000-v2.dtbo
+Copying vc4-kms-dsi-lt070me05000.dtbo
+Copying vc4-kms-dsi-tdo-panel.dtbo
+Copying vc4-kms-dsi-waveshare-800x480.dtbo
+Copying vc4-kms-dsi-waveshare-panel-v2.dtbo
+Copying vc4-kms-dsi-waveshare-panel.dtbo
+Copying vc4-kms-kippah-7inch.dtbo
+Copying vc4-kms-v3d-pi4.dtbo
+Copying vc4-kms-v3d-pi5.dtbo
+Copying vc4-kms-v3d.dtbo
+Copying vc4-kms-vga666.dtbo
+Copying vd55g1.dtbo
+Copying vd56g3.dtbo
+Copying vd65g4.dtbo
+Copying vd66gy.dtbo
+Copying vec-gpio-pi5.dtbo
+Copying vga666.dtbo
+Copying vl805.dtbo
+Copying w1-gpio-pi5.dtbo
+Copying w1-gpio-pullup-pi5.dtbo
+Copying w1-gpio-pullup.dtbo
+Copying w1-gpio.dtbo
+Copying w5500.dtbo
+Copying watterott-display.dtbo
+Copying waveshare-can-fd-hat-mode-a.dtbo
+Copying waveshare-can-fd-hat-mode-b.dtbo
+Copying wifimac.dtbo
+Copying wittypi.dtbo
+Copying wm8960-soundcard.dtbo
+Copying ws2812-pio.dtbo
+Copying start4.elf
+Created image /home/team_singularity/pt-build-v040-1026-192316-16210/boot.img
+/home/team_singularity/pt-build-v040-1026-192316-16210/boot.img: DOS/MBR boot sector, code offset 0x58+2, OEM-ID "mkfs.fat", FAT  1, Media descriptor 0xf8, sectors/track 1, heads 1, sectors 68828 (volumes > 32 MB), FAT (32 bit), sectors/FAT 534, serial number 0x1b3ad42f, label: "BOOT       "
+total 32819
+drwxr-xr-x 3 root root     2048 Dec 31  1969 .
+drwxr-xr-x 7 root root     4096 Oct 26 19:32 ..
+-rwxr-xr-x 1 root root    56411 Oct 26 14:34 bcm2711-rpi-400.dtb
+-rwxr-xr-x 1 root root    56407 Oct 26 14:34 bcm2711-rpi-4-b.dtb
+-rwxr-xr-x 1 root root    56928 Oct 26 14:34 bcm2711-rpi-cm4.dtb
+-rwxr-xr-x 1 root root    39913 Oct 26 14:34 bcm2711-rpi-cm4-io.dtb
+-rwxr-xr-x 1 root root    53824 Oct 26 14:34 bcm2711-rpi-cm4s.dtb
+-rwxr-xr-x 1 root root    78744 Oct 26 14:34 bcm2712d0-rpi-5-b.dtb
+-rwxr-xr-x 1 root root    78740 Oct 26 14:34 bcm2712-d-rpi-5-b.dtb
+-rwxr-xr-x 1 root root    78696 Oct 26 14:34 bcm2712-rpi-500.dtb
+-rwxr-xr-x 1 root root    78740 Oct 26 14:34 bcm2712-rpi-5-b.dtb
+-rwxr-xr-x 1 root root    79685 Oct 26 14:34 bcm2712-rpi-cm5-cm4io.dtb
+-rwxr-xr-x 1 root root    79751 Oct 26 14:34 bcm2712-rpi-cm5-cm5io.dtb
+-rwxr-xr-x 1 root root    79726 Oct 26 14:34 bcm2712-rpi-cm5l-cm4io.dtb
+-rwxr-xr-x 1 root root    79792 Oct 26 14:34 bcm2712-rpi-cm5l-cm5io.dtb
+-rwxr-xr-x 1 root root      113 Oct 26 14:34 cmdline.txt
+-rwxr-xr-x 1 root root     1607 Oct 26 14:34 config.txt
+-rwxr-xr-x 1 root root     5510 Oct 26 14:34 fixup4.dat
+-rwxr-xr-x 1 root root 20164143 Oct 26 14:34 initramfs8
+boot.img: 35239936 bytes
+
+=== 5. RSA-sign boot.img, verify, and prove a 1-byte change is rejected ===
+Verified OK
+1-byte-tampered boot.img: REJECTED (good)
+
+=== 6. install boot.img + boot.sig on the image's boot partition ===
+/dev/loop1p1     99M   49M   50M  50% /mnt/ptboot
+/dev/loop1p1     99M   58M   41M  59% /mnt/ptboot
+
+=== 7. final proof: partition 2 still exactly what was signed ===
+partition 2 unchanged: a3faa511551a9976661fb0d61dc4b7a58db3d59ec5cc3e6bf6057541e61ade95
+
+=== DONE - image ready to flash ===
+image:     /home/team_singularity/rpi-image-gen/work/image-pi-trust-sb/pi-trust-sb.img
+boot.img:  4f3e2e05b08f0d74067e0c0bdebf1766f7bdd2c9da73ea2046a09164b43e6d05  (35239936 bytes)
+root hash: 5caa742cfeca268bc46eecf3247e9f036fa43cb28f3f5f21dc0016af7881b01c

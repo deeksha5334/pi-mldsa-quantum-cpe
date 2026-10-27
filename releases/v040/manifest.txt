@@ -1,0 +1,26 @@
+# pi-trust-manifest v4
+# created: 2026-10-27T00:24:20Z
+# algorithm: ML-DSA-65 (FIPS 204)
+# context: pi-trust-manifest-v1
+#
+# ENFORCED AT BOOT - anti-rollback, checked by the verifier after the signature
+# firmware-version: 1
+#
+# ENFORCED AT BOOT - verity parameters, cross-checked before activation
+# verity-root-hash: 5caa742cfeca268bc46eecf3247e9f036fa43cb28f3f5f21dc0016af7881b01c
+# verity-salt: 98d76191e407fd098a3885649b99f3a7a57fc1c4c42b7ef66750c45b3eda9f5a
+# verity-data-blocks: 417792
+# verity-data-block-size: 4096
+# verity-hash-block-size: 4096
+# verity-hash-algorithm: sha256
+#
+# PROVENANCE ONLY - recorded at build time, NOT checked at boot
+# The boot path verifies the rootfs by root hash, per block, on read.
+# The hash tree is authenticated through verity-root-hash by dm-verity,
+# so the hash-file digest below is a record, not a boot-time check.
+ea6305effb57e7b2dfa211808933553c99df4c62004fc2074ad7f9745aabe206  verity-hash.img
+# build-image-sha256: a3faa511551a9976661fb0d61dc4b7a58db3d59ec5cc3e6bf6057541e61ade95
+# build-image-name: pi-trust-sb.img partition 2
+# build-image-uuid: 7e208cf1-93eb-4bf8-a5bc-bc5b04fbcdcb
+# build-date: 2026-10-27
+# build-recipe: pt-imagegen c6cb43f (layer 0.4.0)

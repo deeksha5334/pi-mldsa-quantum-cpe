@@ -1,0 +1,110 @@
+
+=== 0. preconditions ===
+-rw-r--r-- 1 root root 1828716544 Oct 26 18:56 /home/team_singularity/rpi-image-gen/work/image-pi-trust-sb/pi-trust-sb.img
+output dir: /home/team_singularity/pt-build-v040-1026-192316-16210
+
+=== 1. attach image read-write, mount root partition ===
+loop=/dev/loop1
+
+=== 2. finalize: verity fstab, pi SSH key (key-only), pi sudo ===
+/mnt/ptroot/etc/sudoers.d/020_pi-nopasswd: parsed OK
+
+=== 3. check what was set + services enabled at boot ===
+59863164234ad8f31c0d8449ca4d29ae5ede9b55c193617f58b1e02b87e4d94f  /mnt/ptroot/etc/fstab
+256 SHA256:Lxk8Aj7XT16MIHf3B3KYmPPXvCvZGhrvc4h3SGDhn/o singularity-pi-a (ED25519)
+-r--r----- 1    0    0 27 Oct 26 19:23 /mnt/ptroot/etc/sudoers.d/020_pi-nopasswd
+-rw------- 1 1000 1000 98 Oct 26 19:23 /mnt/ptroot/home/pi/.ssh/authorized_keys
+NetworkManager.service
+ssh-hostkeys-generate.service
+ssh.service
+dbus-org.freedesktop.resolve1.service
+
+=== 4. unmount, fsck (must be clean), then hash LAST (F-14) ===
+ROOT: 18051/104000 files (0.1% non-contiguous), 141160/415860 blocks
+e2fsck exit 0 (0/1 = clean)
+VERITY header information for /home/team_singularity/pt-build-v040-1026-192316-16210/verity-hash.img
+UUID:            	6f3db031-9f45-4f12-b822-4b8fd0cfc79f
+Hash type:       	1
+Data blocks:     	417792
+Data block size: 	4096
+Hash blocks:     	3291
+Hash block size: 	4096
+Hash algorithm:  	sha256
+Salt:            	98d76191e407fd098a3885649b99f3a7a57fc1c4c42b7ef66750c45b3eda9f5a
+Root hash:      	5caa742cfeca268bc46eecf3247e9f036fa43cb28f3f5f21dc0016af7881b01c
+Hash device size: 	13484032 [bytes]
+verity covers the whole partition: 417792 blocks x 4096 = 1711276032 bytes
+
+=== 5. bench-verify every block against the new root hash (reads 1.7 GB, ~1 min) ===
+veritysetup verify: OK
+
+=== 6. provenance ===
+partition 2 sha256: a3faa511551a9976661fb0d61dc4b7a58db3d59ec5cc3e6bf6057541e61ade95
+fs uuid: 7e208cf1-93eb-4bf8-a5bc-bc5b04fbcdcb
+recipe: c6cb43f
+
+=== 7. write manifest v4 ===
+# pi-trust-manifest v4
+# created: 2026-10-27T00:24:20Z
+# algorithm: ML-DSA-65 (FIPS 204)
+# context: pi-trust-manifest-v1
+#
+# ENFORCED AT BOOT - anti-rollback, checked by the verifier after the signature
+# firmware-version: 1
+#
+# ENFORCED AT BOOT - verity parameters, cross-checked before activation
+# verity-root-hash: 5caa742cfeca268bc46eecf3247e9f036fa43cb28f3f5f21dc0016af7881b01c
+# verity-salt: 98d76191e407fd098a3885649b99f3a7a57fc1c4c42b7ef66750c45b3eda9f5a
+# verity-data-blocks: 417792
+# verity-data-block-size: 4096
+# verity-hash-block-size: 4096
+# verity-hash-algorithm: sha256
+#
+# PROVENANCE ONLY - recorded at build time, NOT checked at boot
+# The boot path verifies the rootfs by root hash, per block, on read.
+# The hash tree is authenticated through verity-root-hash by dm-verity,
+# so the hash-file digest below is a record, not a boot-time check.
+ea6305effb57e7b2dfa211808933553c99df4c62004fc2074ad7f9745aabe206  verity-hash.img
+# build-image-sha256: a3faa511551a9976661fb0d61dc4b7a58db3d59ec5cc3e6bf6057541e61ade95
+# build-image-name: pi-trust-sb.img partition 2
+# build-image-uuid: 7e208cf1-93eb-4bf8-a5bc-bc5b04fbcdcb
+# build-date: 2026-10-27
+# build-recipe: pt-imagegen c6cb43f (layer 0.4.0)
+
+=== 8. sign, then verify: device key VALID, attacker key INVALID ===
+pt-sign: ML-DSA-65
+  manifest : manifest.txt (1212 bytes)
+  context  : "pi-trust-manifest-v1"
+
+wrote manifest.sig (3309 bytes)
+SIGNATURE VALID
+  manifest : manifest.txt (1212 bytes)
+  algorithm: ML-DSA-65
+  context  : "pi-trust-manifest-v1"
+  fw-version: 1 (floor 1)
+PT_VERIFY_OK_A5C3
+attacker key: INVALID (good)
+
+=== 9. rehearse boot stages 1-3 on these exact files (stops before stage 4) ===
+pt-verify: ENFORCE START
+pt-verify: stage 1 signature VALID
+pt-verify: stage 1 fw-version: 1 (floor 1)
+pt-verify: stage 2 root hash 5caa742cfeca268bc46eecf3247e9f036fa43cb28f3f5f21dc0016af7881b01c
+pt-verify: stage 3 hash device matches signed parameters
+pt-verify: HALTING BOOT: data device not found /nonexistent
+PANIC: pt-verify: data device not found /nonexistent
+
+=== DONE ===
+root hash: 5caa742cfeca268bc46eecf3247e9f036fa43cb28f3f5f21dc0016af7881b01c
+outputs:
+total 13204
+drwxrwxr-x  2 team_singularity team_singularity     4096 Oct 26 19:24 .
+drwx------ 26 team_singularity team_singularity     4096 Oct 26 19:23 ..
+-rw-r--r--  1 team_singularity team_singularity     3309 Oct 26 19:24 manifest.sig
+-rw-rw-r--  1 team_singularity team_singularity     1212 Oct 26 19:24 manifest.txt
+-rw-r--r--  1 team_singularity team_singularity     1952 Oct 26 19:24 pk
+-rw-rw-r--  1 team_singularity team_singularity     3409 Oct 26 19:24 rehearse.sh
+-rw-rw-r--  1 team_singularity team_singularity      414 Oct 26 19:24 vdump
+-rw-rw-r--  1 team_singularity team_singularity      496 Oct 26 19:23 verity-format.txt
+-rw-------  1 team_singularity team_singularity 13484032 Oct 26 19:23 verity-hash.img
+-rw-rw-r--  1 team_singularity team_singularity      213 Oct 26 19:24 vout

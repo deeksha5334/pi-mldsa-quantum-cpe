@@ -1,0 +1,11 @@
+VERITY header information for /home/team_singularity/pt-build-v040-1026-192316-16210/verity-hash.img
+UUID:            	6f3db031-9f45-4f12-b822-4b8fd0cfc79f
+Hash type:       	1
+Data blocks:     	417792
+Data block size: 	4096
+Hash blocks:     	3291
+Hash block size: 	4096
+Hash algorithm:  	sha256
+Salt:            	98d76191e407fd098a3885649b99f3a7a57fc1c4c42b7ef66750c45b3eda9f5a
+Root hash:      	5caa742cfeca268bc46eecf3247e9f036fa43cb28f3f5f21dc0016af7881b01c
+Hash device size: 	13484032 [bytes]

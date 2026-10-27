@@ -1,0 +1,8 @@
+
+=== 0. preconditions ===
+build folder (newest): /home/team_singularity/pt-build-v040-1026-192316-16210
+manifest OK, root hash 5caa742cfeca268bc46eecf3247e9f036fa43cb28f3f5f21dc0016af7881b01c
+
+=== 1. attach image; partition 2 must be exactly what was hashed and signed ===
+loop=/dev/loop1
+/home/team_singularity/pi-trust-signing/pt-bootimg.sh: line 26: /dev/loop1p2: Permission denied
